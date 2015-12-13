@@ -343,17 +343,30 @@ var OfferNew = React.createClass({
 var Demands = React.createClass({
   displayName: "Demands",
 
+  getInitialState: function getInitialState() {
+    return { data: [] };
+  },
+  componentDidMount: function componentDidMount() {
+    $.ajax({
+      url: "https://4eekisya5f.execute-api.us-east-1.amazonaws.com/production/demands",
+      dataType: 'json',
+      cache: false,
+      success: (function (data) {
+        this.setState({ data: data });
+      }).bind(this),
+      error: (function (xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }).bind(this)
+    });
+  },
   render: function render() {
-    return React.createElement(DemandList, { data: data });
+    return React.createElement(DemandList, { data: this.state.data });
   }
 });
 
 var DemandList = React.createClass({
   displayName: "DemandList",
 
-  getInitialState: function getInitialState() {
-    return { data: [] };
-  },
   render: function render() {
     var demandNodes = this.props.data.map(function (demand) {
       return React.createElement(
@@ -510,6 +523,24 @@ var App = React.createClass({
               Link,
               { to: "offers" },
               "依頼案件を探す"
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "button" },
+            React.createElement(
+              "a",
+              { className: "btn", href: "" },
+              "Hazime"
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "button" },
+            React.createElement(
+              "a",
+              { className: "btn", href: "" },
+              "Login"
             )
           )
         )

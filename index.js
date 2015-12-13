@@ -196,17 +196,30 @@ var OfferNew = React.createClass ({
 })
 
 var Demands = React.createClass ({
+  getInitialState: function() {
+    return {data: []};
+  },
+  componentDidMount: function() {
+    $.ajax({
+      url: "https://4eekisya5f.execute-api.us-east-1.amazonaws.com/production/demands",
+      dataType: 'json',
+      cache: false,
+      success: function(data) {
+        this.setState({data: data});
+      }.bind(this),
+      error: function(xhr, status, err) {
+        console.error(this.props.url, status, err.toString());
+      }.bind(this)
+    });
+  },
   render: function() {
     return (
-      <DemandList data={data}/>
+      <DemandList data={this.state.data}/>
     );
   }
 })
 
 var DemandList = React.createClass ({
-  getInitialState: function() {
-    return {data: []};
-  },
   render: function() {
     var demandNodes = this.props.data.map(function (demand) {
       return (
@@ -311,6 +324,8 @@ var App = React.createClass({
                 依頼案件を探す
               </Link>
             </div>
+            <div className="button"><a className="btn" href="">Hazime</a></div>
+            <div className="button"><a className="btn" href="">Login</a></div>
           </div>
         </div>
         {this.props.children}
