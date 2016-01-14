@@ -19,31 +19,36 @@ var offer_data = [
 var Top = React.createClass ({
   render: function() {
     return(
-      <div className="container">
-        <div className="">
-          <h1 className="catch-phrase">
-            みんなでつくるから、もっとうれしい
-          </h1>
-          <h2 className="sub-catch-phrase">
-            ー わたしたちらしいウェディングを ー
-          </h2>
-          <div class="on-muvie-links">
-            <button>
-              希望のサービス / アイテム
-            </button>
-            <button>
-              予算
-            </button>
-            <button>
-              Search
-            </button>
+      <div className="container-main">
+        <div className="main-description">
+          <div className="video-on-contents">
+            <h1 className="catch-phrase">
+              みんなでつくるから、もっとうれしい
+            </h1>
+            <h2 className="sub-catch-phrase">
+              ー わたしたちらしいウェディングを ー
+            </h2>
+            <div className="on-movie-links">
+              <Link to="/" className="btn top-button">
+                希望のサービス / アイテム
+              </Link>
+              <Link to="/" className="btn top-button">
+                予算
+              </Link>
+              <Link to="/" className="btn top-button">
+                Search
+              </Link>
+            </div>
           </div>
+          <video width="100%" height="100%" autoPlay>
+            <source src="images/top.mp4" type="video/mp4" />
+          </video>
         </div>
-        <table>
+        <table className="what-is-marry">
           <tr>
             <td>
               <div className="left-column">
-                <h3 className="subTitle">marieeとは</h3>
+                <h3 className="sub-title">marieeとは</h3>
                 <div className="description">
                   <p>これから結婚式を挙げるカップルとアトリエショップやカメラマンなどのさまざまな専門店とをつなげるマッチングサービスです。</p>
                  <p>《サービスの流れ》</p>
@@ -51,54 +56,51 @@ var Top = React.createClass ({
                  <p>２．専門店が登録のあった依頼案件に対して提案</p>
                  <p>３．マッチングしたら双方間で直接打ち合わせ</p>
                 </div>
-                <div className="right-column">
-                  <img src="images/mariee.jpg" alt="mariee" />
-                </div>
+              </div>
+              <div className="right-column">
+                <img className="top-img" src="images/mariee.jpg" alt="mariee" />
               </div>
             </td>
           </tr>
           <tr>
             <td>
               <div className="left-column">
-                <h3 className="subTitle">ベンダーに仕事を依頼する</h3>
+                <h3 className="sub-title">ベンダーに仕事を依頼する</h3>
                 <div className="description">
                   <p>希望するアイテム、希望条件、理想のイメージを登録して、専門店から提案が来るのを待ちましょう！</p>
                   <p>専門家の力を集結させて、「わたしたちらしいウェディングを」実現させましょう！</p>
                   <br/>
-                  <p>個人の仕事を受注する</p>
-                  <p>専門店登録をして理想のウェディングを挙げたい2人を応援しませんか？私たちの理念に共感していただける専門店を絶賛募集しています。</p>
                 </div>
                 <Link to="/demands">
-                  <button className="top-link">
+                  <button className="btn">
                     依頼する / 理想のイメージを伝える
                   </button>
                 </Link>
               </div>
               <div className="right-column">
-                <img src="images/demand.jpg" alt="demand" />
+                <img className="top-img" src="images/demand.jpg" alt="demand" />
               </div>
             </td>
           </tr>
           <tr>
             <td>
               <div className="left-column">
-                <h3 className="subTitle">個人の仕事を受注する</h3>
+                <h3 className="sub-title">個人の仕事を受注する</h3>
                 <div className="description">
                   <p>専門店登録をして理想のウェディングを挙げたい2人を応援しませんか？私たちの理念に共感していただける専門店を絶賛募集しています。</p>
                 </div>
                 <Link to="/offers">
-                  <button className="top-link">
+                  <button className="btn">
                     案件を送る / カップルを応援する
                   </button>
                 </Link>
               </div>
               <div className="right-column">
-                <img src="images/offer.jpg" alt="offer" />
+                <img className="top-img" src="images/offer.jpg" alt="offer" />
               </div>
             </td>
           </tr>
         </table>
-        <Link to="/">トップに戻る</Link>
         <footer>
         </footer>
       </div>
@@ -304,30 +306,32 @@ var App = React.createClass({
   render: function() {
     return(
       <div>
-        <div>
+        <header>
           <div className="header">
             <div className="logo">
-              <Link to="/">
+              <Link to="/" className="logo-link">
                 mariee
               </Link>
             </div>
-            <div className="navigation">
-              marieeとは
+            <div className="navigation-bar">
+              <div className="navigation">
+                <Link to="/" className="navi-link">
+                  marieeとは
+                </Link>
+              </div>
+              <div className="navigation-menu">
+                <Link to="demands" className="navi-link">
+                  専門店に依頼する
+                </Link>
+              </div>
+              <div className="navigation">
+                <Link to="offers" className="navi-link">
+                  依頼案件を探す
+                </Link>
+              </div>
             </div>
-            <div className="navigation">
-              <Link to="demands">
-                専門店に依頼する
-              </Link>
-            </div>
-            <div className="navigation">
-              <Link to="offers">
-                依頼案件を探す
-              </Link>
-            </div>
-            <div className="button"><a className="btn" href="">Hazime</a></div>
-            <div className="button"><a className="btn" href="">Login</a></div>
           </div>
-        </div>
+        </header>
         {this.props.children}
       </div>
     );
